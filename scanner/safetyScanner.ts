@@ -1,16 +1,6 @@
-export function scanSkill(content: string) {
-  const suspiciousPatterns = [
-    "private_key",
-    "seed phrase",
-    "export wallet",
-    "send credentials",
-    "curl",
-    "wget",
-    "exec",
-    "eval",
-    "rm -rf"
-  ];
+import { suspiciousPatterns } from "./rules";
 
+export function scanSkill(content: string) {
   const detected: string[] = [];
 
   for (const pattern of suspiciousPatterns) {
@@ -19,10 +9,15 @@ export function scanSkill(content: string) {
     }
   }
 
-  const riskLevel =
-    detected.length === 0 ? "SAFE" :
-    detected.length < 3 ? "WARNING" :
-    "DANGEROUS";
+  let riskLevel: "SAFE" | "WARNING" | "DANGEROUS";
+
+  if (detected.length === 0) {
+    riskLevel = "SAFE";
+  } else if (detected.length < 3) {
+    riskLevel = "WARNING";
+  } else {
+    riskLevel = "DANGEROUS";
+  }
 
   return {
     riskLevel,
