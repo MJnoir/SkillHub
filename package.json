@@ -1,0 +1,23 @@
+{
+  "name": "skillhub",
+  "version": "0.1.0",
+  "description": "SkillHub - a registry and security scanner for AI agent skills",
+  "main": "index.js",
+  "scripts": {
+    "scan": "ts-node scanner/scanSkillFile.ts",
+    "test-scan": "ts-node scanner/testSkill.ts"
+  },
+  "keywords": [
+    "ai",
+    "agents",
+    "skills",
+    "security",
+    "scanner"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "typescript": "^5.0.0"
+  }
+}
